@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Author = require('../models/author')
-//const Book = require('../models/book')
+const Book = require('../models/book')
 
 // All Authors Route
 
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     })
   }
 })
-/*
+
 router.get('/:id', async (req, res) => {
   try {
     const author = await Author.findById(req.params.id)
@@ -97,6 +97,6 @@ router.delete('/:id', async (req, res) => {
       res.redirect(`/authors/${author.id}`)
     }
   }
-})*/
+})
 
 module.exports = router
