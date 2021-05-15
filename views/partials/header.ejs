@@ -1,11 +1,73 @@
-<header>
-    <nav class="header-nav">
-      <a class="header-title" href="/">Biblion</a>
-      <ul>
-        <li><a href="/authors">Authors</a></li>
-        <li><a href="/authors/new">Add Author</a></li>
-        <li><a href="/books">Books</a></li>
-        <li><a href="/books/new">Add Book</a></li>
-      </ul>
-    </nav>
+
+
+
+  <header id="wn__header" class="header__area header__absolute sticky__header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+          <div class="logo">
+            <a href="/">
+              <img src="css/images/logo/logo.png" alt="logo images">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8 d-none d-lg-block">
+          <nav class="mainmenu__nav">
+            <ul class="meninmenu d-flex justify-content-start">
+              <li class="drop with--one--item"><a href="/">Home</a>
+                
+              </li>
+              <li class="drop"><a href="#">Authors</a>
+                <div class="megamenu dropdown">
+                  <ul class="item item01">
+                    <li class="title">Authors</li>
+                    <li><a href="/authors">View authors</a></li>
+                    <li><a href="/authors/new">Add authors</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="drop"><a href="#">Books</a>
+                <div class="megamenu dropdown">
+                  <ul class="item item01">
+                    <li class="title">Books</li>
+                    <li><a href="/books">View books </a></li>
+                    <li><a href="/books/new">Add books</a></li>
+                  </ul>
+                    
+              
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+          <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+            <li class="shop_search"><a class="search__active" href="#"></a></li>
+            <li class="wishlist"><a href="#"></a></li>
+            
+            <li class="setting__bar__icon"><a class="setting__active" href="#"></a>
+              <div class="searchbar__content setting__block">
+                <div class="content-inner">
+                  <div class="switcher-currency">
+                    <strong class="label switcher-label">
+                      <span>My Account</span>
+                    </strong>
+                    <div class="switcher-options">
+                      <div class="switcher-currency-trigger">
+                        <div class="setting__menu">
+                          <span><a href="#">My Account</a></span>
+                          <span><a href="#">Sign In</a></span>
+                          <span><a href="#">Create An Account</a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>		
   </header>
+  <!-- //Header -->
