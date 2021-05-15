@@ -1,4 +1,13 @@
-﻿/*********************************************************************************
+﻿@import 'shared/variables.css';
+@import 'shared/fonts.css';
+@import 'shared/header.css';
+@import 'shared/buttons.css';
+@import 'shared/form.css';
+@import 'shared/author.css';
+@import 'shared/books.css';
+
+
+/*********************************************************************************
 
     Template Name: Boighor Responsive Bootstrap4 Template  
     Version: 1.0
@@ -70,6 +79,40 @@ Basic Styles
 /**
 Reset Styles
 */
+
+:root {
+  font-family: 'Gotham Rounded';
+  font-size: 20px;
+  color: var(--color-text-light);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+.inner-container {
+  margin: 0 2rem;
+}
+
+.page-header {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.error-message {
+  color: hsl(var(--color-danger-hue), 100%, 50%);
+}
+
 * {
   box-sizing: border-box; }
 
@@ -2948,7 +2991,7 @@ h3.widget-title-modal {
    .newsletter__block .newsletter__box button {
   background: transparent none repeat scroll 0 0;
   border: medium none;
-  color: #333;
+  color: rgb(0, 0, 0);
   display: inline-block;
   font-size: 14px;
   font-weight: 700;
@@ -2965,16 +3008,16 @@ h3.widget-title-modal {
   transition: all 300ms ease-in 0s;
 }
       .newsletter__block .newsletter__box button:hover {
-        color: #e59285; }
+        color: white; }
 .newsletter__yellow .newsletter__block .newsletter__box button {
-  background: #2e2e2e none repeat scroll 0 0;
-  border: 1px solid #2e2e2e; }
+  background: #e59285 none repeat scroll 0 0;
+  border: none; }
   .newsletter__yellow .newsletter__block .newsletter__box button:hover {
     background: #ffa800 none repeat scroll 0 0;
     border: 1px solid #ffa800; }
 .brown--color .newsletter__block .newsletter__box button {
-  background: #2e2e2e none repeat scroll 0 0;
-  border: 1px solid #2e2e2e; }
+  background: transparent none repeat scroll 0 0;
+  border: none; }
   .brown--color .newsletter__block .newsletter__box button:hover {
     background: #ce7852 none repeat scroll 0 0;
     border: 1px solid #ce7852; }
