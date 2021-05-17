@@ -5,33 +5,55 @@
         <div class="section__title text-center">
           <h2 class="title__be--2">Search <span class="color--theme">Authors</span></h2>
           <form action="/authors" method="GET">
-          <div class="form-row">
-            <div class="form-item">
-              <label>Name</label>
-              <input type="text" name="name" value="<%= searchOptions.name %>">
+            <div class="form-input">
+              <input type="text" placeholder="Search..." name="name" value="<%= searchOptions.name %>">              
+              <button type="submit"><i class="fa fa-search"></i></button>
             </div>
-          </div>
-          <div class="form-row form-row-end">
-            <button class="btn btn-primary" type="submit">Search</button>
-          </div>
         </form>
-
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
-<br>
-<% authors.forEach(author => { %>
-  <div class="author-row">
-    <div class="author-name"><%= author.name %></div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
-      <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
-      <%- include('../partials/delete', { url: `/authors/${author.id}` }) %>
-    </div>
-  </div>
-<% }) %>
+<!--  -->
+<!-- cart-main-area start -->
+<div class="cart-main-area section-padding--lg bg--white">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 col-sm-12 ol-lg-12">
+              <form action="#">               
+                  <div class="table-content wnro__table table-responsive">
+                      <table>
+                          <thead>
+                              <tr class="title-top">
+                                  <th class="product-thumbnail">Name</th>
+                                  <th class="product-name">View</th>
+                                  <th class="product-price">Edit</th>
+                                  <th class="product-quantity">Delete</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            
+                              <% authors.forEach(author => { %>
+                                <tr>
+                                <td class="product-name"><%= author.name %></td>
+                                
+                                <td class="product-price"><button><a href="/authors/<%= author.id %>"><i class="fa fa-info" aria-hidden="true"></i></a></button></td>
+                                
+                                <td class="product-price"><button><a href="/authors/<%= author.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></button></td>
+                                
+                                <td class="product-price"><%- include('../partials/delete', { url: `/authors/${author.id}` }) %></td>
+                                    
+                                  </tr>
+                              <% }) %>
+                            
+                          </tbody>
+                      </table>
+                  </div>
+              </form> 
+          </div>
+      </div>
+      
+  </div>  
+</div>
