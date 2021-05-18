@@ -21,8 +21,7 @@
 <div class="cart-main-area section-padding--lg bg--white">
   <div class="container">
       <div class="row">
-          <div class="col-md-12 col-sm-12 ol-lg-12">
-              <form action="#">               
+          <div class="col-md-12 col-sm-12 ol-lg-12">            
                   <div class="table-content wnro__table table-responsive">
                       <table>
                           <thead>
@@ -34,7 +33,9 @@
                               </tr>
                           </thead>
                           <tbody>
-                            <!-- Non utilizzare bottoni al limite class="btn" o creare nuova classe nel css-->
+                            <!-- Non utilizzare bottoni al limite class="btn" o creare nuova classe nel css
+                            Sono fesso io non avevo tolto il tag form
+                            -->
                               <% authors.forEach(author => { %>
                                 <tr>
                                 <td class="product-name"><%= author.name %></td>
@@ -51,7 +52,6 @@
                           </tbody>
                       </table>
                   </div>
-              </form> 
           </div>
       </div>
       

@@ -1,11 +1,108 @@
+<%# variabili non più utilizzate %>
 <% bookCoverClass = locals.large ? 'book-cover-large' : '' %>
 <% bookGridClass = locals.large ? 'book-grid-large' : '' %>
-<div class="book-grid <%= bookGridClass %>">
-  <% books.forEach(book => { %>
-    <a href="/books/<%= book.id %>">
-      <img class="book-cover <%= bookCoverClass %>" src="<%= book.coverImagePath %>">
-    </a>
-  <% }) %>
+
+<!-- Start Shop Page -->
+<div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ol-lg-12">
+        <div class="row">
+          <div class="col-lg-12">
+        <div class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
+          <div class="shop__list nav justify-content-center" role="tablist">
+                          <a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
+                          <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
+                      </div>
+                      <p>Showing 1–12 of <%= books.length %> results</p>
+                      <div class="orderby__wrapper">
+                        <span>Sort By</span>
+                        <select class="shot__byselect">
+                          <option>Default sorting</option>
+                          <option>HeadPhone</option>
+                        </select>
+                      </div>
+                    </div>
+          </div>
+        </div>
+        <div class="tab__container">
+          <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
+            <div class="row">
+              <!-- Start Single Product -->
+              <% books.forEach(book => { %>
+                
+                  
+                </a>
+              <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                <div class="product">
+                  <div class="product__thumb">
+                    <a class="first__img" href="/books/<%= book.id %>"><img src="<%= book.coverImagePath %>" alt="product image"></a>
+                    <div class="new__box">
+                      <span class="new-label">New</span>
+                    </div>
+                    <ul class="prize position__right__bottom d-flex">
+                      <li>$70.00</li>
+                      <li class="old_prize">$55.00</li>
+                    </ul>
+                    <div class="action">
+                      <div class="actions_inner">
+                        <ul class="add_to_links">
+                          <li><a class="cart" href="cart.html"></a></li>
+                          <li><a class="wishlist" href="wishlist.html"></a></li>
+                          <li><a class="compare" href="compare.html"></a></li>
+                          <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product__content">
+                    <h4><a href="/books/<%= book.id %>"><%= book.title %></a></h4>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              <% }) %>
+              <!-- End Single Product -->              
+            </div>
+            <ul class="wn__pagination">
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+          
+          <div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">
+            <div class="list__view__wrapper">
+              <!-- Start Single Product -->
+              <% books.forEach(book => { %>
+                <br>
+              <div class="list__view">
+                <div class="thumb">
+                  <a class="first__img" href="/books/<%= book.id %>"><img src="<%= book.coverImagePath %>" alt="product image"></a>
+                </div>
+                <div class="content">
+                  <h2><a href="/books/<%= book.id %>"><%= book.title %></a></h2>
+                  <ul class="prize__box">
+                    <li>$111.00</li>
+                    <li class="old__prize">$220.00</li>
+                  </ul>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                  
+
+                </div>
+              </div>
+              <br>
+              <% }) %>
+              <!-- End Single Product -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- End Shop Page -->
+
 <!-- spazio section /books -->
 <br><br><br>
