@@ -3,11 +3,18 @@
 <!-- Header -->
 <%- include('../partials/header.ejs') %>
 
-<h2 class="page-header">New Author</h2>
-<form action="/authors" method="POST">
-  <%- include('form') %>
-  <div class="form-row form-row-end btn-row">
-    <a class="btn btn-danger" href="/">Cancel</a>
-    <button class="btn btn-primary" type="submit">Create</button>
+<section class="wn__product__area brown--color pt--80  pb--30">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section__title text-center">
+          <h2 class="title__be--2">New <span class="color--theme">Author</span></h2>
+          <form action="/authors" method="POST">
+            <%- include('form') %>
+        </form>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+</section>
+<br><br><br><br><br><br><br><br><br><br>
