@@ -34,14 +34,14 @@
                               </tr>
                           </thead>
                           <tbody>
-                            
+                            <!-- Non utilizzare bottoni al limite class="btn" o creare nuova classe nel css-->
                               <% authors.forEach(author => { %>
                                 <tr>
                                 <td class="product-name"><%= author.name %></td>
                                 
-                                <td class="product-price"><button><a href="/authors/<%= author.id %>"><i class="fa fa-info" aria-hidden="true"></i></a></button></td>
+                                <td class="product-price"><a href="/authors/<%= author.id %>"><i class="fa fa-info" aria-hidden="true"></i></a></td>
                                 
-                                <td class="product-price"><button><a href="/authors/<%= author.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></button></td>
+                                <td class="product-price"><a href="/authors/<%= author.id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 
                                 <td class="product-price"><%- include('../partials/delete', { url: `/authors/${author.id}` }) %></td>
                                     

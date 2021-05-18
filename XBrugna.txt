@@ -1,0 +1,3 @@
+comando per far partire il file server.js --> npm run devStart
+
+se invece hai altre domande sei pregato di non farle, grazie.
