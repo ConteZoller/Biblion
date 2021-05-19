@@ -36,10 +36,7 @@
               <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="product">
                   <div class="product__thumb">
-                    <a class="first__img" href="/books/<%= book.id %>"><img src="<%= book.coverImagePath %>" alt="product image"></a>
-                    <div class="new__box">
-                      <span class="new-label">New</span>
-                    </div>
+                    <a href="/books/<%= book.id %>"><img class="book-cover <%= bookCoverClass %>" src="<%= book.coverImagePath %>" alt="product image"></a>
                     <ul class="prize position__right__bottom d-flex">
                       <li>$70.00</li>
                       <li class="old_prize">$55.00</li>
@@ -81,7 +78,7 @@
                 <br>
               <div class="list__view">
                 <div class="thumb">
-                  <a class="first__img" href="/books/<%= book.id %>"><img src="<%= book.coverImagePath %>" alt="product image"></a>
+                  <a href="/books/<%= book.id %>"><img class="book-cover <%= bookCoverClass %>"src="<%= book.coverImagePath %>" alt="product image"></a>
                 </div>
                 <div class="content">
                   <h2><a href="/books/<%= book.id %>"><%= book.title %></a></h2>
@@ -89,9 +86,7 @@
                     <li>$111.00</li>
                     <li class="old__prize">$220.00</li>
                   </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-                  
-
+                  <p>Description: <%= book.description %></p>
                 </div>
               </div>
               <br>
