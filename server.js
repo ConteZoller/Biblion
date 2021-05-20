@@ -8,17 +8,18 @@ if (process.env.NODE_ENV !== 'production') {
   const app = express()
   const expressLayouts = require('express-ejs-layouts')
   const bodyParser = require('body-parser')
-  const user = require("./routes/users"); //new addition
   
   const indexRouter = require('./routes/index')
   const authorRouter = require('./routes/authors')
   const bookRouter = require('./routes/books')
+  const homeRouter = require("./routes/home"); //new addition
   
   app.set('view engine', 'ejs')
   app.set('views', __dirname + '/views')
-  app.set('layout', 'layouts/layout')
+  app.set('layout', 'layouts/layout' || 'layouts/login')
   app.use(expressLayouts)
   app.use(express.static('public'))
+  //da vedere se eliminare causa conflitto
   app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
   // Middleware
@@ -43,10 +44,10 @@ app.use(express.json());
 */
 
 
-  app.use('/', indexRouter)
+  app.use('/', indexRouter)  
+  app.use('/home', homeRouter)
   app.use('/authors', authorRouter)
   app.use('/books', bookRouter)
-  app.use('/user', user)
 
   
   

@@ -3,9 +3,10 @@ const router = express.Router()
 const Book = require('../models/book')
 const Author = require('../models/author')
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+const auth = require("../middleware/auth")
 
 // All Books Route
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   let query = Book.find()
   if (req.query.title != null && req.query.title != '') {
     query = query.regex('title', new RegExp(req.query.title, 'i'))
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
   }
   try {
     const books = await query.exec()
-    res.render('books/index', {
+    res.render('books/index', auth, {
       books: books,
       searchOptions: req.query
     })
@@ -28,12 +29,12 @@ router.get('/', async (req, res) => {
 })
 
 // New Book Route
-router.get('/new', async (req, res) => {
-  renderNewPage(res, new Book())
+router.get('/new', auth, async (req, res) => {
+  renderNewPage(res, auth, new Book())
 })
 
 // Create Book Route
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
@@ -46,34 +47,34 @@ router.post('/', async (req, res) => {
   try {
     const newBook = await book.save()
     //res.redirect(`books/${newBook.id}`)
-    res.redirect(`books`)
+    res.redirect(`books`, auth)
   } catch {
-    renderNewPage(res, book, true)
+    renderNewPage(res, auth, book, true)
   }
 })
 
 // Show Book Route
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id).populate('author').exec()
-    res.render('books/show', { book: book })
+    res.render('books/show', auth, { book: book })
   } catch {
     res.redirect('/')
   }
 })
 
 // Edit Book Route
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
-    renderEditPage(res, book)
+    renderEditPage(res, auth, book)
   } catch {
     res.redirect('/')
   }
 })
 
 // Update Book Route
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   let book
 
   try {
@@ -87,10 +88,10 @@ router.put('/:id', async (req, res) => {
       saveCover(book, req.body.cover)
     }
     await book.save()
-    res.redirect(`/books/${book.id}`)
+    res.redirect(`/books/${book.id}`, auth)
   } catch {
     if (book != null) {
-      renderEditPage(res, book, true)
+      renderEditPage(res, auth, book, true)
     } else {
       redirect('/')
     }
@@ -98,15 +99,15 @@ router.put('/:id', async (req, res) => {
 })
 
 // Delete Book Page
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   let book
   try {
     book = await Book.findById(req.params.id)
     await book.remove()
-    res.redirect('/books')
+    res.redirect('/books', auth)
   } catch {
     if (book != null) {
-      res.render('books/show', {
+      res.render('books/show', auth, {
         book: book,
         errorMessage: 'Could not remove book'
       })
@@ -117,14 +118,14 @@ router.delete('/:id', async (req, res) => {
 })
 
 async function renderNewPage(res, book, hasError = false) {
-  renderFormPage(res, book, 'new', hasError)
+  renderFormPage(res, auth, book, 'new', hasError)
 }
 
 async function renderEditPage(res, book, hasError = false) {
-  renderFormPage(res, book, 'edit', hasError)
+  renderFormPage(res, auth, book, 'edit', hasError)
 }
 
-async function renderFormPage(res, book, form, hasError = false) {
+async function renderFormPage(res, auth, book, form, hasError = false) {
   try {
     const authors = await Author.find({})
     const params = {
@@ -138,9 +139,9 @@ async function renderFormPage(res, book, form, hasError = false) {
         params.errorMessage = 'Error Creating Book'
       }
     }
-    res.render(`books/${form}`, params)
+    res.render(`books/${form}`, auth, params)
   } catch {
-    res.redirect('/books')
+    res.redirect('/books', auth)
   }
 }
 
