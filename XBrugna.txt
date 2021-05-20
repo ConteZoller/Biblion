@@ -1,3 +1,19 @@
 comando per far partire il file server.js --> npm run devStart
 
 se invece hai altre domande sei pregato di non farle, grazie.
+
+
+
+ho aggiunto l'authentication, bisogna fare un form di login e ristabilire le gerarchie
+
+Per il momento lo ho testato con "Postman"
+formato body:
+
+{
+    "username" : "*",
+    "email" : "*@gmail.com",
+    "password" : "*"
+
+}
+
+

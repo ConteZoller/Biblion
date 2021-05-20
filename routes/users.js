@@ -69,7 +69,7 @@ router.post(
 
             jwt.sign(
                 payload,
-                "randomString", {
+                "secret", { //"secret" al posto di "randomString"
                     expiresIn: 10000
                 },
                 (err, token) => {
