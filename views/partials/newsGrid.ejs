@@ -5,7 +5,6 @@
 <div class="book-grid <%= bookGridClass %>">
     
   <% books.forEach(book => { %>
-    <% if(count<6) {%>
     <div class="product">
         <div class="product__thumb">
             <a href="/books/<%= book.id %>">
@@ -16,5 +15,5 @@
             </a>
         </div>
     </div>
-  <% }count++}) %>
+  <% }) %>
 </div>
