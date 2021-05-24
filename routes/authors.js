@@ -5,7 +5,6 @@ const Book = require('../models/book')
 const auth = require("../middleware/auth")
 
 // All Authors Route
-if(auth){
 router.get('/', auth, async (req, res) => {
   let searchOptions = {}
   if (req.query.name != null && req.query.name !== '') {
@@ -60,9 +59,9 @@ router.get('/:id', auth, async (req, res) => {
 router.get('/:id/edit', auth, async (req, res) => {
   try {
     const author = await Author.findById(req.params.id)
-    res.render('authors/edit', auth, { author: author })
+    res.render('authors/edit', { author: author })
   } catch {
-    res.redirect('/authors', auth)
+    res.redirect('/authors')
   }
 })
 
@@ -72,12 +71,12 @@ router.put('/:id', auth, async (req, res) => {
     author = await Author.findById(req.params.id)
     author.name = req.body.name
     await author.save()
-    res.redirect(`/authors/${author.id}`, auth)
+    res.redirect(`/authors/${author.id}`)
   } catch {
     if (author == null) {
       res.redirect('/')
     } else {
-      res.render('authors/edit', auth, {
+      res.render('authors/edit', {
         author: author,
         errors: 'Error updating Author'
       })
@@ -90,14 +89,14 @@ router.delete('/:id', auth, async (req, res) => {
   try {
     author = await Author.findById(req.params.id)
     await author.remove()
-    res.redirect('/authors', auth)
+    res.redirect('/authors')
   } catch {
     if (author == null) {
       res.redirect('/')
     } else {
-      res.redirect(`/authors/${author.id}`, auth)
+      res.redirect(`/authors/${author.id}`)
     }
   }
 })
-}
+
 module.exports = router

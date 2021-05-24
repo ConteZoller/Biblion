@@ -19,7 +19,7 @@ router.get('/', auth, async (req, res) => {
   }
   try {
     const books = await query.exec()
-    res.render('books/index', auth, {
+    res.render('books/index',  {
       books: books,
       searchOptions: req.query
     })
@@ -30,7 +30,7 @@ router.get('/', auth, async (req, res) => {
 
 // New Book Route
 router.get('/new', auth, async (req, res) => {
-  renderNewPage(res, auth, new Book())
+  renderNewPage(res, new Book())
 })
 
 // Create Book Route
@@ -47,7 +47,7 @@ router.post('/', auth, async (req, res) => {
   try {
     const newBook = await book.save()
     //res.redirect(`books/${newBook.id}`)
-    res.redirect(`books`, auth)
+    res.redirect(`books`)
   } catch {
     renderNewPage(res, auth, book, true)
   }
@@ -57,7 +57,7 @@ router.post('/', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id).populate('author').exec()
-    res.render('books/show', auth, { book: book })
+    res.render('books/show', { book: book })
   } catch {
     res.redirect('/')
   }
@@ -67,7 +67,7 @@ router.get('/:id', auth, async (req, res) => {
 router.get('/:id/edit', auth, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
-    renderEditPage(res, auth, book)
+    renderEditPage(res, book)
   } catch {
     res.redirect('/')
   }
@@ -88,10 +88,10 @@ router.put('/:id', auth, async (req, res) => {
       saveCover(book, req.body.cover)
     }
     await book.save()
-    res.redirect(`/books/${book.id}`, auth)
+    res.redirect(`/books/${book.id}`)
   } catch {
     if (book != null) {
-      renderEditPage(res, auth, book, true)
+      renderEditPage(res, book, true)
     } else {
       redirect('/')
     }
@@ -104,10 +104,10 @@ router.delete('/:id', auth, async (req, res) => {
   try {
     book = await Book.findById(req.params.id)
     await book.remove()
-    res.redirect('/books', auth)
+    res.redirect('/books')
   } catch {
     if (book != null) {
-      res.render('books/show', auth, {
+      res.render('books/show', {
         book: book,
         errorMessage: 'Could not remove book'
       })
@@ -118,14 +118,14 @@ router.delete('/:id', auth, async (req, res) => {
 })
 
 async function renderNewPage(res, book, hasError = false) {
-  renderFormPage(res, auth, book, 'new', hasError)
+  renderFormPage(res, book, 'new', hasError)
 }
 
 async function renderEditPage(res, book, hasError = false) {
-  renderFormPage(res, auth, book, 'edit', hasError)
+  renderFormPage(res, book, 'edit', hasError)
 }
 
-async function renderFormPage(res, auth, book, form, hasError = false) {
+async function renderFormPage(res, book, form, hasError = false) {
   try {
     const authors = await Author.find({})
     const params = {
@@ -139,9 +139,9 @@ async function renderFormPage(res, auth, book, form, hasError = false) {
         params.errorMessage = 'Error Creating Book'
       }
     }
-    res.render(`books/${form}`, auth, params)
+    res.render(`books/${form}`, params)
   } catch {
-    res.redirect('/books', auth)
+    res.redirect('/books')
   }
 }
 
