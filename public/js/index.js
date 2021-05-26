@@ -42,7 +42,7 @@ class Login {
     handleResponse(resp, target) {
         const element = document.createElement('div');
         if(resp.success) {
-            window.location = location.href;
+            window.location = "/";
         } else {
             element.className = 'alert alert-danger mt-4';
             element.innerHTML = resp.error; 

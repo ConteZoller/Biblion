@@ -8,13 +8,8 @@ const { dbUrl, dbName, dbCollection } = require('../config');
 const Book = require('../models/book')
 
 
-router.get('/', (req, res, next) => {
-    res.render('index', { user:  req.session.user ? req.session.user : null });
-});
 
-
-
-router.get('/news', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     if(req.session.user) {
         let books
         try {
@@ -23,12 +18,24 @@ router.get('/news', async (req, res, next) => {
             books = []
         }
 
-        res.render('home', { books: books } );
+        res.render('index', { books: books });
     } else {
-        res.sendStatus(403);
+        res.redirect('/auth');
     }
 });
 
+router.get('/auth', (req, res, next) => {
+    res.render('users/login', { user:  req.session.user ? req.session.user : null });
+});
+
+
+router.get('/new', (req, res, next) => {
+    res.render('users/signup');
+});
+
+router.get('/account', (req, res, next) => {
+    res.render('users/account');
+});
 
 router.get('/logout', (req, res, next) => {
     if(req.session.user) {
