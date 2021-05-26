@@ -1,5 +1,7 @@
 //require('dotenv').config();
 
+  //session
+  'use strict';
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
   }
@@ -12,20 +14,24 @@ if (process.env.NODE_ENV !== 'production') {
   const indexRouter = require('./routes/index')
   const authorRouter = require('./routes/authors')
   const bookRouter = require('./routes/books')
-  const userRouter = require("./routes/users"); //new addition
+
+  //session
+
+  const helmet = require('helmet');
+  const cookieSession = require('cookie-session');
+  const { sessionName, sessionKeys } = require('./config');
+ 
   
+  app.disable('x-powered-by');
+  //
+
   app.set('view engine', 'ejs')
   app.set('views', __dirname + '/views')
-  app.set('layout', 'layouts/layout' || 'layouts/login')
+  app.set('layout', 'layouts/layout')
   app.use(expressLayouts)
   app.use(express.static('public'))
   //da vedere se eliminare causa conflitto
-  app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
-
-  // Middleware
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+  //app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
   
   const mongoose = require('mongoose')
@@ -44,11 +50,19 @@ app.use(express.json());
   });
 */
 
+//session
+  //app.use('/public', express.static(path.join(__dirname, 'public')));
+  app.use(helmet());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(cookieSession({
+      name: sessionName,
+      keys: sessionKeys
+  }));
 
   app.use('/', indexRouter)  
-  app.use('/users', userRouter)
   app.use('/authors', authorRouter)
   app.use('/books', bookRouter)
+
 
   
   

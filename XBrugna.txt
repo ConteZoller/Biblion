@@ -4,7 +4,12 @@ se invece hai altre domande sei pregato di non farle, grazie.
 
 
 
-ho aggiunto l'authentication, bisogna fare un form di login e ristabilire le gerarchie
+ ̶h̶o̶ ̶a̶g̶g̶i̶u̶n̶t̶o̶ ̶l̶'̶a̶u̶t̶h̶e̶n̶t̶i̶c̶a̶t̶i̶o̶n̶,̶ ̶b̶i̶s̶o̶g̶n̶a̶ ̶f̶a̶r̶e̶ ̶u̶n̶ ̶f̶o̶r̶m̶ ̶d̶i̶ ̶l̶o̶g̶i̶n̶ ̶e̶ ̶r̶i̶s̶t̶a̶b̶i̶l̶i̶r̶e̶ ̶l̶e̶ ̶g̶e̶r̶a̶r̶c̶h̶i̶e̶
+
+ho rimosso il middleware (auth) e ho provato con i cookie di sessione, piccolo problema sorge in fase di login
+
+non riesco a capire quale sia il problema perciò mi sto arrabbiando
+
 
 Per il momento lo ho testato con "Postman"
 formato body:

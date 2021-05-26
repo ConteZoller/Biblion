@@ -14,6 +14,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-mongodb-session": "^2.4.1",
+    "cookie-session": "^1.4.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
@@ -21,8 +22,11 @@
     "express-validator": "^6.11.1",
     "filepond": "^4.27.1",
     "filepond-plugin-file-encode": "^2.1.10",
+    "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10"
+    "mongodb": "^3.6.8",
+    "mongoose": "^5.12.10",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "dotenv": "^9.0.2",

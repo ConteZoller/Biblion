@@ -2,7 +2,7 @@
 <body>
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
-		
+		<% if(user) { %>
 		<!-- Header -->
 		<%- include('../partials/header.ejs') %>
 
@@ -23,8 +23,8 @@
 		</div>
 		<br><br><br><br>
 		<!-- End Search Popup -->
-       
-        <!-- End Slider area -->
+
+		<% } %>
 		<!-- Start BEst Seller Area -->
 		<%- body %>
 		<!-- Start BEst Seller Area -->
@@ -87,6 +87,9 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/index.js"></script>
   <div class="container">
     
     <div class="inner-container">

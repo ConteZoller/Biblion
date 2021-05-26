@@ -3,10 +3,9 @@ const router = express.Router()
 const Book = require('../models/book')
 const Author = require('../models/author')
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
-const auth = require("../middleware/auth")
 
 // All Books Route
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   let query = Book.find()
   if (req.query.title != null && req.query.title != '') {
     query = query.regex('title', new RegExp(req.query.title, 'i'))
@@ -29,12 +28,12 @@ router.get('/', auth, async (req, res) => {
 })
 
 // New Book Route
-router.get('/new', auth, async (req, res) => {
+router.get('/new', async (req, res) => {
   renderNewPage(res, new Book())
 })
 
 // Create Book Route
-router.post('/', auth, async (req, res) => {
+router.post('/',  async (req, res) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
@@ -49,12 +48,12 @@ router.post('/', auth, async (req, res) => {
     //res.redirect(`books/${newBook.id}`)
     res.redirect(`books`)
   } catch {
-    renderNewPage(res, auth, book, true)
+    renderNewPage(res, book, true)
   }
 })
 
 // Show Book Route
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id).populate('author').exec()
     res.render('books/show', { book: book })
@@ -64,7 +63,7 @@ router.get('/:id', auth, async (req, res) => {
 })
 
 // Edit Book Route
-router.get('/:id/edit', auth, async (req, res) => {
+router.get('/:id/edit', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     renderEditPage(res, book)
@@ -74,7 +73,7 @@ router.get('/:id/edit', auth, async (req, res) => {
 })
 
 // Update Book Route
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', async (req, res) => {
   let book
 
   try {
@@ -99,7 +98,7 @@ router.put('/:id', auth, async (req, res) => {
 })
 
 // Delete Book Page
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   let book
   try {
     book = await Book.findById(req.params.id)
