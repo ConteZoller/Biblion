@@ -1,3 +1,17 @@
+
+/*
+if(req.session.user) {
+
+} else {
+  res.sendStatus(403);
+}
+*/
+
+
+
+
+
+
 const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
@@ -6,7 +20,8 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 
 // All Books Route
 router.get('/', async (req, res) => {
-  let query = Book.find()
+  if(req.session.user) {
+    let query = Book.find()
   if (req.query.title != null && req.query.title != '') {
     query = query.regex('title', new RegExp(req.query.title, 'i'))
   }
@@ -25,11 +40,19 @@ router.get('/', async (req, res) => {
   } catch {
     res.redirect('/')
   }
+} else {
+    res.sendStatus(403);
+}
+  
 })
 
 // New Book Route
 router.get('/new', async (req, res) => {
-  renderNewPage(res, new Book())
+  if(req.session.user) {
+    renderNewPage(res, new Book())
+} else {
+    res.sendStatus(403);
+}
 })
 
 // Create Book Route
@@ -54,22 +77,32 @@ router.post('/',  async (req, res) => {
 
 // Show Book Route
 router.get('/:id', async (req, res) => {
+if(req.session.user) {
   try {
     const book = await Book.findById(req.params.id).populate('author').exec()
     res.render('books/show', { book: book })
   } catch {
     res.redirect('/')
   }
+} else {
+  res.sendStatus(403);
+}
+
 })
 
 // Edit Book Route
 router.get('/:id/edit', async (req, res) => {
+  if(req.session.user) {
   try {
     const book = await Book.findById(req.params.id)
     renderEditPage(res, book)
   } catch {
     res.redirect('/')
   }
+  
+} else {
+  res.sendStatus(403);
+}
 })
 
 // Update Book Route

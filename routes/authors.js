@@ -5,7 +5,8 @@ const Book = require('../models/book')
 
 // All Authors Route
 router.get('/',  async (req, res) => {
-  let searchOptions = {}
+  if(req.session.user) {
+    let searchOptions = {}
   if (req.query.name != null && req.query.name !== '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
   }
@@ -18,11 +19,19 @@ router.get('/',  async (req, res) => {
   } catch {
     res.redirect('/')
   }
+} else {
+    res.sendStatus(403);
+}
+  
 })
 
 // New Author Route
 router.get('/new', (req, res) => {
+  if(req.session.user) {
   res.render('authors/new', { author: new Author() })
+  } else {
+    res.sendStatus(403);
+  }
 })
 
 // Create Author Route
@@ -43,25 +52,35 @@ router.post('/',  async (req, res) => {
 })
 
 router.get('/:id',  async (req, res) => {
-  try {
-    const author = await Author.findById(req.params.id)
-    const books = await Book.find({ author: author.id }).limit(6).exec()
-    res.render('authors/show', {
-      author: author,
-      booksByAuthor: books
-    })
-  } catch {
-    res.redirect('/')
+  if(req.session.user) {
+    try {
+        const author = await Author.findById(req.params.id)
+        const books = await Book.find({ author: author.id }).limit(6).exec()
+        res.render('authors/show', {
+          author: author,
+          booksByAuthor: books
+        })
+      } catch {
+        res.redirect('/')
+      }
+  } else {
+    res.sendStatus(403);
   }
+  
 })
 
 router.get('/:id/edit',  async (req, res) => {
-  try {
-    const author = await Author.findById(req.params.id)
-    res.render('authors/edit', { author: author })
-  } catch {
-    res.redirect('/authors')
+  if(req.session.user) {
+    try {
+        const author = await Author.findById(req.params.id)
+        res.render('authors/edit', { author: author })
+      } catch {
+        res.redirect('/authors')
+      }
+  } else {
+    res.sendStatus(403);
   }
+  
 })
 
 router.put('/:id', async (req, res) => {
