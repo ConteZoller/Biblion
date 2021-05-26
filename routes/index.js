@@ -7,23 +7,26 @@ const { dbUrl, dbName, dbCollection } = require('../config');
 
 const Book = require('../models/book')
 
-/*
-router.get('/', (req, res, next) => {
 
+router.get('/', (req, res, next) => {
     res.render('index', { user:  req.session.user ? req.session.user : null });
 });
-*/
 
 
-router.get('/', async (req, res, next) => {
-    let books
-try {
-    books = await Book.find().sort({ createdAt: 'desc' }).limit(6).exec()
-} catch {
-    books = []
-}
 
-    res.render('index', { user:  req.session.user ? req.session.user : null }, { books: books } );
+router.get('/news', async (req, res, next) => {
+    if(req.session.user) {
+        let books
+        try {
+            books = await Book.find().sort({ createdAt: 'desc' }).limit(5).exec()
+        } catch {
+            books = []
+        }
+
+        res.render('home', { books: books } );
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 
