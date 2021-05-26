@@ -5,24 +5,27 @@ const router = express.Router();
 const {db, hashString} = require('../utils');
 const { dbUrl, dbName, dbCollection } = require('../config');
 
+const Book = require('../models/book')
+
+/*
 router.get('/', (req, res, next) => {
 
     res.render('index', { user:  req.session.user ? req.session.user : null });
 });
+*/
 
 
-/*
 router.get('/', async (req, res, next) => {
     let books
 try {
-    books = await Book.find().sort({ createdAt: 'desc' }).limit(10).exec()
+    books = await Book.find().sort({ createdAt: 'desc' }).limit(6).exec()
 } catch {
     books = []
 }
 
     res.render('index', { user:  req.session.user ? req.session.user : null }, { books: books } );
 });
-*/
+
 
 router.get('/logout', (req, res, next) => {
     if(req.session.user) {

@@ -1,17 +1,3 @@
-
-/*
-if(req.session.user) {
-
-} else {
-  res.sendStatus(403);
-}
-*/
-
-
-
-
-
-
 const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
@@ -99,7 +85,6 @@ router.get('/:id/edit', async (req, res) => {
   } catch {
     res.redirect('/')
   }
-  
 } else {
   res.sendStatus(403);
 }
