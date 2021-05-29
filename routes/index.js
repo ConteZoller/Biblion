@@ -34,7 +34,11 @@ router.get('/new', (req, res, next) => {
 });
 
 router.get('/account', (req, res, next) => {
-    res.render('users/account');
+    if(req.session.user) {
+        res.render('users/account');
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 router.get('/logout', (req, res, next) => {

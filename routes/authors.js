@@ -20,7 +20,7 @@ router.get('/',  async (req, res) => {
     res.redirect('/')
   }
 } else {
-    res.sendStatus(403);
+    res.sendStatus(403)
 }
   
 })
@@ -30,7 +30,7 @@ router.get('/new', (req, res) => {
   if(req.session.user) {
   res.render('authors/new', { author: new Author() })
   } else {
-    res.sendStatus(403);
+    res.sendStatus(403)
   }
 })
 
@@ -64,7 +64,7 @@ router.get('/:id',  async (req, res) => {
         res.redirect('/')
       }
   } else {
-    res.sendStatus(403);
+    res.sendStatus(403)
   }
   
 })
@@ -78,7 +78,7 @@ router.get('/:id/edit',  async (req, res) => {
         res.redirect('/authors')
       }
   } else {
-    res.sendStatus(403);
+    res.sendStatus(403)
   }
   
 })

@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
     res.redirect('/')
   }
 } else {
-    res.sendStatus(403);
+    res.sendStatus(403)
 }
   
 })
@@ -71,7 +71,7 @@ if(req.session.user) {
     res.redirect('/')
   }
 } else {
-  res.sendStatus(403);
+  res.sendStatus(403)
 }
 
 })
@@ -86,7 +86,7 @@ router.get('/:id/edit', async (req, res) => {
     res.redirect('/')
   }
 } else {
-  res.sendStatus(403);
+  res.sendStatus(403)
 }
 })
 
