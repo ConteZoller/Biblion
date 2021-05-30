@@ -1,3 +1,4 @@
+'use strict';
 
 var express = require('express');
 var router = express.Router();
@@ -6,10 +7,6 @@ const {db, hashString} = require('../utils');
 const { dbUrl, dbName, dbCollection } = require('../config');
 
 const Book = require('../models/book');
-const { FileStatus } = require('filepond');
-
-
-
 
 router.get('/', async (req, res, next) => {
     if(req.session.user) {
