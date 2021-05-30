@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/auth', (req, res, next) => {
-    res.render('users/login', { user:  req.session.user ? req.session.user : null });
+    res.render('users/login', { user:  req.session.user ? req.session.user : null } );
 });
 
 
