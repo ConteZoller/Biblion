@@ -1,11 +1,13 @@
-'use strict';
 
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
+
 const {db, hashString} = require('../utils');
 const { dbUrl, dbName, dbCollection } = require('../config');
 
-const Book = require('../models/book')
+const Book = require('../models/book');
+const { FileStatus } = require('filepond');
+
 
 
 
@@ -25,7 +27,10 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/auth', (req, res, next) => {
-    res.render('users/login', { user:  req.session.user ? req.session.user : null } );
+    res.render('users/login', { 
+        layout: 'layouts/fit',
+        user:  req.session.user ? req.session.user : null
+    });
 });
 
 
