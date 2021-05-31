@@ -1,7 +1,5 @@
+'use strict';
 
-
-  //session
-  'use strict';
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
   }
@@ -17,7 +15,6 @@ if (process.env.NODE_ENV !== 'production') {
   const expressLayouts = require('express-ejs-layouts');
 
   ///////////////////////////////////////////////////////////////////////
-
   ////////////////////////////  Impostazione MongoDB  ///////////////////
 
   const mongoose = require('mongoose')
@@ -27,19 +24,6 @@ if (process.env.NODE_ENV !== 'production') {
   db.once('open', () => console.log('Connected to Mongoose'))
 
   ///////////////////////////////////////////////////////////////////////
-
-  //TODO: Cancella o no?
-  /*
-    const MongoClient = require('mongodb').MongoClient;
-    const uri = "mongodb+srv://dbUser:3vu$Sk5EEMLQyHb@biblion.kgmsq.mongodb.net/BiblionDB?retryWrites=true&w=majority";
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    client.connect(err => {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close();
-    });
-  */
-
   ////////////////////////////  Impostazione routes  ////////////////////
 
   const indexRouter = require('./routes/index')
@@ -47,10 +31,8 @@ if (process.env.NODE_ENV !== 'production') {
   const bookRouter = require('./routes/books')
 
   ///////////////////////////////////////////////////////////////////////
-
   //////////////////////////// Impostazione server //////////////////////
 
-  
   var app = express();
 
   app.set('view engine', 'ejs')
@@ -60,16 +42,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.set('layout', 'layouts/layout')
   
   app.use(express.static('public'))
-
-  //TODO Cancella o no?
-  /*
-  da vedere se eliminare causa conflitto
-  app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
-  app.use('/public', express.static(path.join(__dirname, 'public')));  
-  */
-
   app.use(helmet());
-  //app.use(bodyParser.urlencoded({ extended: true })); 
   app.use(express.urlencoded())
   app.use(cookieSession({
       name: sessionName,
@@ -80,11 +53,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/authors', authorRouter)
   app.use('/books', bookRouter)
 
-
-  
-  
   app.listen(process.env.PORT || 3000)
-
 
   ///////////////////////////////////////////////////////////////////////
 

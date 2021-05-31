@@ -1,3 +1,4 @@
+'use strict';
 
 var express = require('express');
 var router = express.Router();
@@ -6,9 +7,12 @@ const {db, hashString} = require('../utils');
 const { dbUrl, dbName, dbCollection } = require('../config');
 
 const Book = require('../models/book');
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 1b38165587ddd67d548e8566255c5d8cd0c7ee53
 
 router.get('/', async (req, res, next) => {
     if(req.session.user) {
