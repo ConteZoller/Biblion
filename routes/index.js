@@ -1,4 +1,5 @@
 'use strict';
+const User = require('../models/user')
 
 var express = require('express');
 var router = express.Router();
@@ -7,12 +8,6 @@ const {db, hashString} = require('../utils');
 const { dbUrl, dbName, dbCollection } = require('../config');
 
 const Book = require('../models/book');
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 1b38165587ddd67d548e8566255c5d8cd0c7ee53
 
 router.get('/', async (req, res, next) => {
     if(req.session.user) {
@@ -37,9 +32,41 @@ router.get('/auth', (req, res, next) => {
 });
 
 
-router.get('/new', (req, res, next) => {
-    res.render('users/signup');
+router.get('/signup', (req, res, next) => {
+    res.render('users/signup', { user: new User() });
 });
+
+router.post('/signup',  async (req, res) => {
+    const email = req.body.email;
+    try {
+        const client = await db(dbUrl);
+        const database = client.db(dbName);
+        const users = database.collection(dbCollection);
+        const existingUser = await users.findOne({email: email});  //controllo solo che non ci siano account con la stessa email
+        if(!existingUser) {
+            const user = new User({
+                username: req.body.username,
+                email: req.body.email,
+                type: req.body.type,
+                password: hashString(req.body.password)
+              })
+              try {
+                const newUser = await user.save()
+                res.redirect(`/`)
+              } catch {
+                res.render('users/signup', {
+                  user: user,
+                  errors: 'Error creating User'
+                })
+              }
+        } else {
+            res.json({ error: 'This email is linked to another account.' }); 
+        }
+
+    } catch(err) {
+        res.json({ error: 'Connection error.' });
+    }
+  })
 
 router.get('/account', (req, res, next) => {
     if(req.session.user) {

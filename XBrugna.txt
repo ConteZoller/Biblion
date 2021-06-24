@@ -3,15 +3,6 @@ comando per far partire il file server.js --> npm run devStart
 se invece hai altre domande sei pregato di non farle, grazie.
 
 
-
- ̶h̶o̶ ̶a̶g̶g̶i̶u̶n̶t̶o̶ ̶l̶'̶a̶u̶t̶h̶e̶n̶t̶i̶c̶a̶t̶i̶o̶n̶,̶ ̶b̶i̶s̶o̶g̶n̶a̶ ̶f̶a̶r̶e̶ ̶u̶n̶ ̶f̶o̶r̶m̶ ̶d̶i̶ ̶l̶o̶g̶i̶n̶ ̶e̶ ̶r̶i̶s̶t̶a̶b̶i̶l̶i̶r̶e̶ ̶l̶e̶ ̶g̶e̶r̶a̶r̶c̶h̶i̶e̶
-
-ho rimosso il middleware (auth) e ho provato con i cookie di sessione, piccolo problema sorge in fase di login
-
-non riesco a capire quale sia il problema perciò mi sto arrabbiando
-
-
-Per il momento lo ho testato con "Postman"
 formato body:
 
 {
@@ -20,5 +11,13 @@ formato body:
     "password" : "*"
 
 }
+
+
+Implementata l'aggiunta di nuovi utenti di "tipo 1" (type="1" --> utenti normali, type="0" --> admin)
+al momento gli admin sono quelli vecchi quindi non sono dotati di un campo type
+
+seconda cosa su cui lavorare è il metodo di encrypting che vogliamo utilizzare (attuale hashString())
+
+volevo implementare un sistema di attivazione account via email, quindi se scombussolo un po di cose sai il motivo
 
 

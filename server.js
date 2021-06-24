@@ -6,7 +6,6 @@ if (process.env.NODE_ENV !== 'production') {
 
   ////////////////////////////  Caricamento componenti  //////////////////
 
-  const bodyParser = require('body-parser')
   const helmet = require('helmet');
   const cookieSession = require('cookie-session');
   const { sessionName, sessionKeys } = require('./config');
